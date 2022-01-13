@@ -12,12 +12,13 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@Table(name = "users")
 public class User {
 
     @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
-    @Column(updatable = false, nullable = false)
+    @Column(updatable = false)
     private UUID id;
 
     @Column(length = 50)
@@ -26,7 +27,7 @@ public class User {
     @Column(length = 50)
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
+    @OneToMany(cascade = CascadeType.REMOVE , mappedBy = "user")
     private List<Debt> debts;
 
 }

@@ -1,18 +1,21 @@
 package com.fourthhomework.n11bootcamp.user.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fourthhomework.n11bootcamp.debt.Debt;
+import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 public class UserDto {
 
     private UUID id;
 
     private String name;
 
-    private String lastname;
+    private String lastName;
+
+    private List<Debt> debts;
+
 
 }

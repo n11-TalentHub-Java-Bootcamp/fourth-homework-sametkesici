@@ -1,6 +1,7 @@
-package com.fourthhomework.n11bootcamp.user;
+package com.fourthhomework.n11bootcamp.mapper;
 
-import com.fourthhomework.n11bootcamp.mapper.BaseMapper;
+import com.fourthhomework.n11bootcamp.user.User;
+import com.fourthhomework.n11bootcamp.user.dto.SaveUserDto;
 import com.fourthhomework.n11bootcamp.user.dto.UserDto;
 import org.mapstruct.Mapper;
 
@@ -9,9 +10,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UserMapper extends BaseMapper<User, UserDto> {
 
-    UserDto toDto(User customer);
+    UserDto toDto(User user);
 
-    User toEntity(UserDto customerDto);
+    User toEntity(UserDto userDto);
 
     List<User> toEntity(List<UserDto> dtoList);
 

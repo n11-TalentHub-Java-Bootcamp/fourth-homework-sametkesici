@@ -1,4 +1,4 @@
-package com.fourthhomework.n11bootcamp.configure.swagger;
+package com.fourthhomework.n11bootcamp.configuration.swagger;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
