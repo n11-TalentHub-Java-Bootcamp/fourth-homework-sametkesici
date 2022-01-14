@@ -1,11 +1,11 @@
 package com.fourthhomework.n11bootcamp.collection;
 
+import com.fourthhomework.n11bootcamp.debt.Debt;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.Date;
+
 
 @Entity
 @Getter
@@ -14,9 +14,15 @@ import java.util.UUID;
 public class Collection {
 
     @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(generator = "generator")
+    private Long id;
+
+    private Double collectionAmount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Debt debt;
+
+    @Temporal(value = TemporalType.DATE)
+    private Date createdDate;
 
 }

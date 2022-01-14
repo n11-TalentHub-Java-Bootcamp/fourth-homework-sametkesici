@@ -1,25 +1,20 @@
 package com.fourthhomework.n11bootcamp.debt;
 
-
 import com.fourthhomework.n11bootcamp.user.User;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "debts")
 public class Debt {
 
     @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(generator = "generator")
+    private Long id;
 
     @Column(updatable = false)
     private Double mainDebt;
@@ -32,7 +27,6 @@ public class Debt {
     private String debtType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)

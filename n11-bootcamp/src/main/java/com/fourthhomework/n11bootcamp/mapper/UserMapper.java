@@ -1,7 +1,6 @@
 package com.fourthhomework.n11bootcamp.mapper;
 
 import com.fourthhomework.n11bootcamp.user.User;
-import com.fourthhomework.n11bootcamp.user.dto.SaveUserDto;
 import com.fourthhomework.n11bootcamp.user.dto.UserDto;
 import org.mapstruct.Mapper;
 

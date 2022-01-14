@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,12 +32,12 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeUser(@PathVariable UUID id){
+    public void removeUser(@PathVariable Long id){
         userService.removeUser(id);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> retrieveUser(@PathVariable UUID id){
+    public ResponseEntity<User> retrieveUser(@PathVariable Long id){
         User user = userService.retrieveUser(id);
         return ResponseEntity.ok(user);
     }

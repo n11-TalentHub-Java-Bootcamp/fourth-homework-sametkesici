@@ -1,13 +1,13 @@
 package com.fourthhomework.n11bootcamp.user;
 
 import com.fourthhomework.n11bootcamp.debt.Debt;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -16,10 +16,9 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(updatable = false)
-    private UUID id;
+    @GeneratedValue(generator = "generator")
+    @Column(name = "id", nullable = false,updatable = false)
+    private Long id;
 
     @Column(length = 50)
     private String name;
@@ -27,7 +26,6 @@ public class User {
     @Column(length = 50)
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.REMOVE , mappedBy = "user")
-    private List<Debt> debts;
-
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
+    private List<Debt> debt;
 }

@@ -9,13 +9,12 @@ import java.util.UUID;
 @Data
 public class UserDto {
 
-    private UUID id;
+    private Long id;
 
     private String name;
 
     private String lastName;
 
     private List<Debt> debts;
-
 
 }

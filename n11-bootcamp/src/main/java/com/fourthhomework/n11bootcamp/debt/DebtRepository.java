@@ -7,8 +7,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface DebtRepository extends JpaRepository<Debt, UUID> {
+public interface DebtRepository extends JpaRepository<Debt, Long> {
 
     List<Debt> findByCreatedAtBetween(Date startDate , Date endDate);
+
+    List<Debt> findByDueDateBeforeAndUserId(Date dueDate , Long UserId);
+
+    List<Debt> findDebtByUserId(Long id);
 
 }
