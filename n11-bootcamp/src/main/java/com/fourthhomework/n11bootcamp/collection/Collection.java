@@ -1,15 +1,19 @@
 package com.fourthhomework.n11bootcamp.collection;
 
 import com.fourthhomework.n11bootcamp.debt.Debt;
-import lombok.Getter;
-import lombok.Setter;
+import com.fourthhomework.n11bootcamp.user.User;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 
 
 @Entity
 @Getter
+@Builder
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "collections")
 public class Collection {
 
@@ -22,7 +26,10 @@ public class Collection {
     @ManyToOne(fetch = FetchType.LAZY)
     private Debt debt;
 
-    @Temporal(value = TemporalType.DATE)
-    private Date createdDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
 
 }

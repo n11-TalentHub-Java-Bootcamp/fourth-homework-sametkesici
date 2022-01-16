@@ -11,4 +11,6 @@ public interface CollectionRepository extends JpaRepository<Collection, Long> {
 
     List<Collection> findByCreatedAtBetween(Date startDate , Date endDate);
 
+    List<Collection> findByUserId(Long userId);
+
 }

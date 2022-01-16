@@ -26,6 +26,4 @@ public class User {
     @Column(length = 50)
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
-    private List<Debt> debt;
 }

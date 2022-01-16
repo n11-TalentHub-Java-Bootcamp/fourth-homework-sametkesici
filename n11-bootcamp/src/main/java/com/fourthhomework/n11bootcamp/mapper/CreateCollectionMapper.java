@@ -13,10 +13,10 @@ public interface CreateCollectionMapper extends BaseMapper<Collection, CreateCol
     @Mapping(source = "debt.id" , target = "debtId")
     CreateCollectionDto toDto(Collection collection);
 
-    @Mapping(source = "debt" , target = "debt.id")
+    @Mapping(source = "debtId" , target = "debt.id")
     Collection toEntity(CreateCollectionDto createCollection);
 
-    @Mapping(source = "debt" , target = "debt.id")
+    @Mapping(source = "debtId" , target = "debt.id")
     List<Collection> toEntity(List<CreateCollectionDto> dtoList);
 
     @Mapping(source = "debt.id" , target = "debtId")

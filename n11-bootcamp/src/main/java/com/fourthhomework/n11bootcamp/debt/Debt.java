@@ -1,15 +1,17 @@
 package com.fourthhomework.n11bootcamp.debt;
 
 import com.fourthhomework.n11bootcamp.user.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Debt {
 
     @Id

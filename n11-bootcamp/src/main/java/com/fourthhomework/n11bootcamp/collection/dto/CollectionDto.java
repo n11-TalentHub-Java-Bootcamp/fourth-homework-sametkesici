@@ -1,8 +1,13 @@
 package com.fourthhomework.n11bootcamp.collection.dto;
 
 
+import lombok.Data;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
+@Data
 public class CollectionDto {
 
 
@@ -12,6 +17,9 @@ public class CollectionDto {
 
     private Long debtId;
 
-    private Date createdDate;
+    private Long userId;
+
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
 
 }

@@ -12,15 +12,19 @@ import java.util.List;
 public interface CollectionMapper extends BaseMapper <Collection, CollectionDto> {
 
     @Mapping(source = "debt.id" , target = "debtId")
+    @Mapping(source = "user.id" , target = "userId")
     CollectionDto toDto(Collection collection);
 
-    @Mapping(source = "debt" , target = "debt.id")
+    @Mapping(source = "debtId" , target = "debt.id")
+    @Mapping(source = "userId", target = "user.id")
     Collection toEntity(CollectionDto collection);
 
-    @Mapping(source = "debt" , target = "debt.id")
+    @Mapping(source = "debtId" , target = "debt.id")
+    @Mapping(source = "userId", target = "user.id")
     List<Collection> toEntity(List<CollectionDto> dtoList);
 
     @Mapping(source = "debt.id" , target = "debtId")
+    @Mapping(source = "user.id" , target = "userId")
     List<CollectionDto> toDto(List<Collection> entityList);
 
 }

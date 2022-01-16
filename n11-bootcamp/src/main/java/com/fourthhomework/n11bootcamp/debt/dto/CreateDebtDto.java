@@ -9,8 +9,6 @@ public class CreateDebtDto {
 
     private Double mainDebt;
 
-    private Double remainingDebt;
-
     private Date dueDate;
 
     private Long userId;
