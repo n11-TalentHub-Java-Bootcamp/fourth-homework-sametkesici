@@ -1,11 +1,5 @@
 # Ödev 4 
 
-## İçerikler
-* [Ekran Görüntüleri](#ekran-görüntüleri)
-* [Kullanım](#kullanım)
-* [Proje Durumu](#proje-durumu)
-
-
 
 ## Kullanım
 
