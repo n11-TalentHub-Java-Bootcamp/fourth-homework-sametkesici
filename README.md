@@ -11,4 +11,4 @@
 
 
 ## Proje Durumu
-Project is: _complete_
+Project is: _tamamlandı_
