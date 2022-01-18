@@ -1,5 +1,6 @@
 package com.fourthhomework.n11bootcamp.user;
 
+import com.fourthhomework.n11bootcamp.collection.Collection;
 import com.fourthhomework.n11bootcamp.debt.Debt;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @Column(name = "id", nullable = false,updatable = false)
+    @Column(nullable = false,updatable = false)
     private Long id;
 
     @Column(length = 50)
@@ -25,5 +26,11 @@ public class User {
 
     @Column(length = 50)
     private String lastName;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.REMOVE)
+    private List<Debt> debts;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.REMOVE)
+    private List<Collection> collections;
 
 }

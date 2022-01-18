@@ -10,7 +10,6 @@ import java.util.Date;
 @Data
 public class CollectionDto {
 
-
     private Long id;
 
     private Double collectionAmount;

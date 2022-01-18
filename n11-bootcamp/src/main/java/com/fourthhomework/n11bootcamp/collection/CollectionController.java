@@ -42,7 +42,4 @@ public class CollectionController {
         return ResponseEntity.ok(collectionService.getLateFeeAmountByUser(userId));
     }
 
-
-
-
 }

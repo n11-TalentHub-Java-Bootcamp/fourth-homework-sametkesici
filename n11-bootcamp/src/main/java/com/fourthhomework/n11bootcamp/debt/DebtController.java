@@ -46,7 +46,7 @@ public class DebtController {
 
     @GetMapping("/user/debt-amount/{userId}")
     public ResponseEntity<?> getAllDebtAmountByUserId(@PathVariable Long userId){
-        return ResponseEntity.ok(debtService.getAllDebtAmountByUserId(userId));
+        return ResponseEntity.ok(debtService.getAllDebtAmountByUserId(userId).doubleValue() + debtService.getTotalLateFeeAmountByUserId(userId,NORMAL));
     }
 
     @GetMapping("/user/late-fee-amount/{userId}")
@@ -56,7 +56,7 @@ public class DebtController {
 
     @GetMapping("/over-due-amount/{userId}")
     public ResponseEntity<Double> getAmountOverDueDebt(@PathVariable Long userId){
-        return ResponseEntity.ok(debtService.findDebtsByOverDueAndUser(userId).stream().mapToDouble(Debt::getMainDebt).sum());
+        return ResponseEntity.ok(debtService.findDebtsByOverDueAndUser(userId).stream().mapToDouble(Debt::getMainDebt).sum() + debtService.getAmountLateFeeByOverDueAndUser(userId));
     }
 
 
