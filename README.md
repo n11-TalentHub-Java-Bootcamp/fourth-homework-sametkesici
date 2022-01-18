@@ -13,7 +13,7 @@
 
 `Daha sonra N11BootcampApplication.java çalıştırılmalıdır.`
 
-`Daha sonra Swagger ( http://localhost:8080/swagger-ui.html ) üzerinde kontroller yapılabilir.`
+`Swagger ( http://localhost:8080/swagger-ui.html ) üzerinde kontroller yapılabilir.`
 
 
 ## Proje Durumu
