@@ -3,10 +3,10 @@ package com.fourthhomework.n11bootcamp.collection;
 
 import com.fourthhomework.n11bootcamp.debt.Debt;
 import com.fourthhomework.n11bootcamp.debt.DebtService;
-import com.fourthhomework.n11bootcamp.util.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -25,27 +25,31 @@ public class CollectionService {
 
     
     @Transactional
-    public Collection makeCollection(Collection collection){
+    public Collection makeCollection(Collection collection) {
 
         Date createdDate = new Date();
-
         Debt mainDebt = debtService.retrieveDebtsById(collection.getDebt().getId());
-        mainDebt.setRemainingDebt(0.0);
-        debtService.updateDebt(mainDebt);
 
-        collection.setCreatedAt(createdDate);
-        collection.setUser(mainDebt.getUser());
-        collection.setCreatedAt(createdDate);
+        if(mainDebt.getRemainingDebt().equals(0.0) || mainDebt.getDebtType().equals(LATE_FEE)){
+            return null;
+        }else {
+            mainDebt.setRemainingDebt(0.0);
+            debtService.updateDebt(mainDebt);
 
-        if(mainDebt.getDueDate().before(createdDate)){
-            createDebtWithLateFee(mainDebt , createdDate);
+            collection.setCreatedAt(createdDate);
+            collection.setUser(mainDebt.getUser());
+            collection.setCreatedAt(createdDate);
 
-            Double collectionAmount = mainDebt.getMainDebt() + calculateLateFee(mainDebt.getDueDate(),createdDate,mainDebt.getMainDebt());
-            collection.setCollectionAmount(collectionAmount);
-        }else{
-            collection.setCollectionAmount(mainDebt.getMainDebt());
+            if(mainDebt.getDueDate().before(createdDate)){
+                createDebtWithLateFee(mainDebt , createdDate);
+
+                Double collectionAmount = mainDebt.getMainDebt() + calculateLateFee(mainDebt.getDueDate(),createdDate,mainDebt.getMainDebt());
+                collection.setCollectionAmount(collectionAmount);
+            }else{
+                collection.setCollectionAmount(mainDebt.getMainDebt());
+            }
+            return collectionRepository.save(collection);
         }
-        return collectionRepository.save(collection);
     }
 
     public List<Collection> retrieveCollectionsByCreatedAt(Date startedDate, Date endDate) {

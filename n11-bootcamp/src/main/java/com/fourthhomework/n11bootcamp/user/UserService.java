@@ -3,6 +3,7 @@ package com.fourthhomework.n11bootcamp.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class UserService {
     }
 
     public User retrieveUser(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).orElseThrow(() ->  new EntityNotFoundException("user not found"));
     }
 
     public List<User> retrieveAllUser() {

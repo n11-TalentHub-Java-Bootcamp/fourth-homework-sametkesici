@@ -1,11 +1,14 @@
 package com.fourthhomework.n11bootcamp.collection;
 
+import com.fourthhomework.n11bootcamp.collection.dto.CollectionDto;
 import com.fourthhomework.n11bootcamp.collection.dto.CreateCollectionDto;
 import com.fourthhomework.n11bootcamp.mapper.CollectionMapper;
 import com.fourthhomework.n11bootcamp.mapper.CreateCollectionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.sql.Date;
 
@@ -22,9 +25,14 @@ public class CollectionController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> makeCollection(@RequestBody CreateCollectionDto createCollectionDto){
-        Collection createdCollection = collectionService.makeCollection(createCollectionMapper.toEntity(createCollectionDto));
-        return ResponseEntity.ok(collectionMapper.toDto(createdCollection));
+    public ResponseEntity<?> makeCollection(@RequestBody CreateCollectionDto createCollectionDto) {
+
+        var createdCollection = collectionService.makeCollection(createCollectionMapper.toEntity(createCollectionDto));
+
+        if( createdCollection != null){
+            return ResponseEntity.ok(collectionMapper.toDto(createdCollection));
+        }
+        return ResponseEntity.badRequest().body("Bu borc tahsilat yapmaya uygun degildir");
     }
 
     @GetMapping

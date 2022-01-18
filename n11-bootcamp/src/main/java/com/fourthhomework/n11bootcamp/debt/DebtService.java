@@ -61,7 +61,7 @@ public class DebtService {
 
         Date createdDate = new Date();
 
-        List<Debt> debts = debtRepository.findByDebtTypeEqualsAndUserId(debtType,userId);
+        List<Debt> debts = debtRepository.findByDebtTypeEqualsAndUserIdAndRemainingDebtGreaterThan(debtType,userId ,0.0);
 
         return debts.stream().mapToDouble(x -> calculateLateFee(x.getDueDate(),createdDate , x.getMainDebt())).sum();
     }

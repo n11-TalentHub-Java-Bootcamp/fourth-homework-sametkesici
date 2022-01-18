@@ -16,7 +16,7 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
 
     List<Debt> findDebtByUserIdAndRemainingDebtGreaterThan(Long id , Double debt);
 
-    List<Debt> findByDebtTypeEqualsAndUserId(String DebtType , Long Id);
+    List<Debt> findByDebtTypeEqualsAndUserIdAndRemainingDebtGreaterThan(String DebtType , Long Id , Double remaningDebt);
 
     @Query("select sum (mainDebt) from Debt where user.id = :userId and debtType = :debtId")
     Double findByUserIdAndDebtType(Long userId , String debtId);

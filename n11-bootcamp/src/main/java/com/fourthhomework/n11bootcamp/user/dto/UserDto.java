@@ -15,6 +15,4 @@ public class UserDto {
 
     private String lastName;
 
-    private List<Debt> debts;
-
 }

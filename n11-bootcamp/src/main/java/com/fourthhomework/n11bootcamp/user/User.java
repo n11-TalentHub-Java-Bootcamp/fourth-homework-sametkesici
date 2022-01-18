@@ -18,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @Column(nullable = false,updatable = false)
+    @Column(name= "id" , nullable = false,updatable = false)
     private Long id;
 
     @Column(length = 50)
