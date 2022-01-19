@@ -3,16 +3,18 @@ package com.fourthhomework.n11bootcamp.collection;
 
 import com.fourthhomework.n11bootcamp.debt.Debt;
 import com.fourthhomework.n11bootcamp.debt.DebtService;
+import com.fourthhomework.n11bootcamp.util.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import static com.fourthhomework.n11bootcamp.constant.DebtTypeConstants.LATE_FEE;
-import static com.fourthhomework.n11bootcamp.util.DateUtils.calculateLateFee;
+import static com.fourthhomework.n11bootcamp.util.DateUtils.*;
 
 
 @Service
@@ -40,7 +42,14 @@ public class CollectionService {
             collection.setUser(mainDebt.getUser());
             collection.setCreatedAt(createdDate);
 
-            if(mainDebt.getDueDate().before(createdDate)){
+            Calendar dueDate = toCalendar(mainDebt.getDueDate());
+            Calendar now = toCalendar(createdDate);
+
+            var betweenDaysInDueDateAndNow = daysBetween(dueDate , now);
+
+
+
+            if(betweenDaysInDueDateAndNow > 0 ){
                 createDebtWithLateFee(mainDebt , createdDate);
 
                 Double collectionAmount = mainDebt.getMainDebt() + calculateLateFee(mainDebt.getDueDate(),createdDate,mainDebt.getMainDebt());
